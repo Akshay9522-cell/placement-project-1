@@ -8,6 +8,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Loader from './Loader';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+
+
+
 
 
 
@@ -30,15 +36,18 @@ const Login = () => {
     try {
       await axios.post(api,{email:email,password:password}).then((res)=>{
         console.log(res.data)
+    
+
       
-        if(res.data && res.data._id){
-          localStorage.setItem("userId",res.data._id)
-          localStorage.setItem("userName",res.data.name)
-          localStorage.setItem("userPhone",res.data.phone)
-          localStorage.setItem("userEmail",res.data.email)
-          localStorage.setItem("userAddress",res.data.address)
-          localStorage.setItem("userAccnumber",res.data.accountNumber)
-         nav('/dash')
+        if(res.data.user && res.data.user._id){
+          localStorage.setItem("userId",res.data.user._id)
+          localStorage.setItem("userName",res.data.user.name)
+          localStorage.setItem("userPhone",res.data.user.phone)
+          localStorage.setItem("userEmail",res.data.user.email)
+          localStorage.setItem("userAddress",res.data.user.address)
+          localStorage.setItem("userAccnumber",res.data.user.accountNumber)
+          localStorage.setItem('token',res.data.token)
+         nav('/home')
          toast.success('logged in')
         }else{
           toast.error('Email or Password is incorrect')
@@ -51,9 +60,14 @@ const Login = () => {
       setLoading(false); // Hide loader
   }
 
-          
-          
-       }
+  }
+  if (loading) {
+    return <Loader />;
+}
+
+ function showPassw(){
+     setShow(!show)
+ }
          
   return (
     <>
@@ -71,9 +85,12 @@ const Login = () => {
            
 
             <label htmlFor="">Password  <br />
-            <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
+            <input type={show?'text':'password'} value={password} onChange={(e)=>{setPassword(e.target.value)}} />
             <p> <span onClick={handleShow}> Forgot password</span></p>
+            <button onClick={showPassw} className='psw' > {show?<FaEye/>:<FaEyeSlash />
+            }</button>
             </label>
+           
 
             <button onClick={logIn}>Log in</button>
             <p>First time user <Link to='regis'> <span id='regis'>REGISTER HERE </span> </Link></p>
@@ -86,7 +103,7 @@ const Login = () => {
 
     
 
-      <Modal show={show} onHide={handleClose}>
+      {/* <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title> Welcome to Axis</Modal.Title>
         </Modal.Header>
@@ -98,7 +115,7 @@ const Login = () => {
             Send OTP
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
    
    <ToastContainer/>
     </>

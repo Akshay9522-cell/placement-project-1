@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+
 
 const MyAccount = () => {
+
+  
   return (
     <div>
       {/* <h1 className='my'>My Account details</h1> */}

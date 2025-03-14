@@ -53,7 +53,12 @@ const bankSchema=new mongoose.Schema({
     accountNumber:{
         type:String,
         required:true
+    },
+    InsertAt: {
+        type: Date,
+        default: Date.now // Automatically set the date to now when a new document is created
     }
+
       
 })
 

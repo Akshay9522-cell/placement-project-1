@@ -1,5 +1,6 @@
 const express=require('express')
 
+
 const controller=require('../controller/controller')
 const multer=require('multer')
 const route=express.Router()
@@ -25,6 +26,8 @@ const upload = multer({ storage: storage });
  route.post('/reset',controller.reset)
 
  route.post('/update',controller.updatePassword)
+
+ route.post('/auth',controller.auth)
 
 
 

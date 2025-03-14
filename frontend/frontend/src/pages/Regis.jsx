@@ -4,11 +4,15 @@ import URL from '../config'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import { message } from 'antd';
+import Loader from './Loader';
+import { useNavigate } from 'react-router-dom';
 
 const Regis = () => {
-
+    
+     const nav=useNavigate()
      const[inp,setInp]=useState({})
      const[img,setImg]=useState([])
+      const [loading, setLoading] = useState(false);
 
       const handleInp=(e)=>{
          let name=e.target.name
@@ -41,36 +45,47 @@ const Regis = () => {
 
 
          async function submitData() {
-        
+          setLoading(true); // Show loader
             const api=`${URL}/regis`
 
-            const formData= new FormData()
-            formData.append('name',inp.name)
-            formData.append('dob',inp.dob)
-            formData.append('ssn',inp.ssn)
-            formData.append('address',inp.address)
-            formData.append('email',inp.email)
-            formData.append('phone',inp.phone)
-
-            for(let i=0;i<img.length;i++){
-                    
-                formData.append('image',img[i])
-            }
-            
-            formData.append('accounttype',inp.accounttype)
-            formData.append('deposit',inp.deposit)
-
-            await axios.post(api,formData).then((res)=>{
-                console.log(res.data)
-            })
-             
-             console.log(formData)
-             message.success('Registration successfull')
+            try {
+              const formData= new FormData()
+              formData.append('name',inp.name)
+              formData.append('dob',inp.dob)
+              formData.append('ssn',inp.ssn)
+              formData.append('address',inp.address)
+              formData.append('email',inp.email)
+              formData.append('phone',inp.phone)
+  
+              for(let i=0;i<img.length;i++){
+                      
+                  formData.append('image',img[i])
+              }
+              
+              formData.append('accounttype',inp.accounttype)
+              formData.append('deposit',inp.deposit)
+  
+              await axios.post(api,formData).then((res)=>{
+                  console.log(res.data)
+              })
+               
+               console.log(formData)
+               message.success('Registration successfull')
+               nav('/login')
+            } catch (error) {
+               console.log('error')
+            } finally {
+              setLoading(false); // Hide loader
+          }
+          
             
          }
+   
          // form data validation
 
-      
+         if(loading){
+          return<Loader/>
+        }
 
   return (
     <>  
