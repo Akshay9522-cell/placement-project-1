@@ -22,6 +22,10 @@ const upload = multer({ storage: storage });
 
  route.post('/login',controller.login)
 
+ route.post('/reset',controller.reset)
+
+ route.post('/update',controller.updatePassword)
+
 
 
 module.exports=route

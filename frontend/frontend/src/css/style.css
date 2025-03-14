@@ -1,4 +1,4 @@
-.nav{
+.nav1{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -6,21 +6,50 @@
     width: 100%;
     border-radius: 30px;
 }
+.navv{
+  background-color: #97144d;
+  width: 100%;
+  border-radius: 30px;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+.navv .btn{
+  color: wheat;
+  font-size: 20px;
+  position: relative;
+  top: 10px;
+  bottom: 10px;
+  left: 0px;
+}
 
-.nav ul{
+.my{
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  width: 100%;
+  max-width: 170px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #97144d;
+  font-style: italic;
+  color: #e75c98;
+}
+
+.nav1 ul{
     display: flex;
     gap: 3rem;
 }
-.nav ul li{
+.nav1 ul li{
     list-style: none;
 }
 
-.nav ul li a{
+.nav1 ul li a{
     text-decoration: none;
     color: white;
     font-size: 20px;
 }
-.nav ul li a:hover{
+.nav1 ul li a:hover{
     border-bottom: 2px solid whitesmoke;
     padding-bottom: 5px;
 }
@@ -172,6 +201,44 @@ button{
     background-color: rgb(248, 211, 211);
     
   }
+  .dash{
+    position: relative;
+    top: 10px;
+  }
+  .dash ul{
+    display: flex;
+  }
+  .dash ul li a{
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .sidebar{
+    height: fit-content;
+    width: 380px;
+    background-color: #97144d;
+  border-radius: 20px;
+  box-shadow: rgba(290, 75, 35, 0.24) 20px 31px 8px;
+
+  }
+  .sidebar h3{
+    color: rgb(23, 21, 22);
+  }
+  .sidebar h4{
+    color: rgb(233, 125, 144);
+  }
+  .info{
+    padding: 20px;
+  }
+
+  .loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #007bff; /* Change color as needed */
+}
   
   /* Responsiveness */
   @media (max-width: 768px) {

@@ -6,11 +6,15 @@ import URL from '../config';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 
 const Login = () => {
-
+ 
+  const nav=useNavigate()
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -18,19 +22,36 @@ const Login = () => {
 
        const[email,setemail]=useState('')
        const[password,setPassword]=useState('')
+       const [loading, setLoading] = useState(false);
 
        const logIn=async()=>{
-
+        setLoading(true); // Show loader
            let api=`${URL}/login`
+    try {
+      await axios.post(api,{email:email,password:password}).then((res)=>{
+        console.log(res.data)
+      
+        if(res.data && res.data._id){
+          localStorage.setItem("userId",res.data._id)
+          localStorage.setItem("userName",res.data.name)
+          localStorage.setItem("userPhone",res.data.phone)
+          localStorage.setItem("userEmail",res.data.email)
+          localStorage.setItem("userAddress",res.data.address)
+          localStorage.setItem("userAccnumber",res.data.accountNumber)
+         nav('/dash')
+         toast.success('logged in')
+        }else{
+          toast.error('Email or Password is incorrect')
+        }
+    
+    })
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false); // Hide loader
+  }
 
-            await axios.post(api,{email:email,password:password}).then((res)=>{
-                console.log(res.data)
-
-                localStorage.setItem("userName",res.data.name)
-                localStorage.setItem("userPhone",res.data.phone)
-                localStorage.setItem("userEmail",res.data.email)
-                localStorage.setItem("userAddress",res.data.address)
-            })
+          
           
        }
          
@@ -78,6 +99,8 @@ const Login = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+   
+   <ToastContainer/>
     </>
   )
 }

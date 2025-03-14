@@ -3,6 +3,7 @@ import bank from '../imges/bank.jpg'
 import URL from '../config'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
+import { message } from 'antd';
 
 const Regis = () => {
 
@@ -29,7 +30,7 @@ const Regis = () => {
 
        if(!name || !dob || !ssn || !address || !email || !phone || deposit){
           
-        toast.success("Please fill all the details")
+       alert('please fill the detail')
           
            return false;
        }
@@ -64,6 +65,7 @@ const Regis = () => {
             })
              
              console.log(formData)
+             message.success('Registration successfull')
             
          }
          // form data validation

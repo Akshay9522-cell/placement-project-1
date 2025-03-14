@@ -1,18 +1,24 @@
 const bankModal=require('../modal/modal')
 const randomPassword=require('../utils/password')
 const Email=require('../middleware/nodeMailer')
+const accNumber=require('../utils/accountNumber')
+const bcrypt = require('bcryptjs');
 
 const submit=async(req,res)=>{
 
     const imageUrls = req.files.map(file => file.path);
     console.log(imageUrls)
-
+    
+     const accNum=accNumber()
+     console.log(accNum)
+     req.body.accNum
 
     const password=randomPassword()
-    console.log()
+    console.log(password)
     req.body.password
+    
 
-    const emailSend=Email(req.body.email)
+    const emailSend=Email(req.body.email,password,accNum)
     console.log(emailSend)
  
 
@@ -31,7 +37,8 @@ try {
         accounttype,
         deposit,
         image:imageUrls,
-        password:password
+        password:password,
+        accountNumber:accNum
        })
         res.send('okk')
 } catch (error) {
@@ -49,8 +56,9 @@ const login=async(req,res)=>{
         if(!bankUser){
            res.send('email is invalid')
         }
+        const match = await bcrypt.compare(password, bankUser.password);
 
-        if(bankUser.password!=password){
+        if(!match){
           res.send('password is invalid')
         }
 
@@ -60,12 +68,40 @@ const login=async(req,res)=>{
         console.log('error in login')
      }
     
-
-
 }
+
+const reset=async(req,res)=>{
+     const{id}=req.body
+     
+     const data=await bankModal.findById(id)
+     res.send(data)
+} 
+
+
+const updatePassword = async (req, res) => {
+   const { id, password } = req.body;
+
+   try {
+       // Hash the new password
+       const hashedPassword = await bcrypt.hash(password, 10);
+
+       // Update the user's password in the database
+       await bankModal.findByIdAndUpdate(id, { password: hashedPassword });
+
+       res.send('Password updated successfully');
+   } catch (error) {
+       console.error('Error updating password:', error);
+       res.status(500).send('Error updating password');
+   }
+};
+
 
 
 module.exports={
     submit,
-    login
+    login,
+    reset,
+    updatePassword
+   
+    
 }

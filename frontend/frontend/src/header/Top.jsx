@@ -7,7 +7,7 @@ import { FaUserCircle } from "react-icons/fa";
 const Top    = () => {
   return (
     <div>
-      <nav className='nav'>
+      <nav className='nav1'>
         <h1><img src={logo} alt="" /></h1>
         <ul>
             <li> <Link to='home'><FaHome className='icon' /> Home</Link></li>

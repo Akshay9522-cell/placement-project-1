@@ -1,11 +1,16 @@
 const nodemailer = require("nodemailer");
-const randomPassword=require('../utils/password')
- const password=randomPassword()
+
+
+
+ 
  
 
 
 
- const nodeMailer=async(dox)=>{
+ const nodeMailer=async(dox,password,accNum)=>{
+
+
+ 
     
     const transporter = nodemailer.createTransport({
         service: 'gmail', // Use 'gmail' as the service/ true for port 465, false for other ports
@@ -21,7 +26,7 @@ const randomPassword=require('../utils/password')
           to: dox, // dList of recipients
           subject: 'Hello from Akshay worlds', // Subject line
           text:  `akhsay namdev `, // Plain text body
-          html:  `Your password is: ${password}` // HTML body
+          html:  `Your password is: ${password} and your Account number is;${accNum}` // HTML body
           
       };
       transporter.sendMail(mailOptions, (error, info) => {

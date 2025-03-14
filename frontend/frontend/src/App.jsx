@@ -6,6 +6,9 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Regis from './pages/Regis'
 import Dashboard from './Dashboard'
+import MyAccount from './pages/MyAccount'
+import MyDeposit from './pages/MyDeposit'
+import Resetpass from './pages/Resetpass'
 
 function App() {
 
@@ -27,6 +30,9 @@ function App() {
 
       <Routes>
         <Route path='/dash' element={<Dashboard/>}>
+       <Route path='dash/myacc' element={<MyAccount/>}/>
+       <Route path='dash/mydepo' element={<MyDeposit/>}/>
+       <Route path='dash/resetpass' element={<Resetpass/>}/>
 
         </Route>
       </Routes>

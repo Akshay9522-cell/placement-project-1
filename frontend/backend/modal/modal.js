@@ -49,6 +49,10 @@ const bankSchema=new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    accountNumber:{
+        type:String,
+        required:true
     }
       
 })
