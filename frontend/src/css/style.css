@@ -219,7 +219,16 @@ button{
     background-color: #97144d;
   border-radius: 20px;
   box-shadow: rgba(290, 75, 35, 0.24) 20px 31px 8px;
+  transition: transform 0.3s ease; /* Smooth transition */
 
+  
+
+  }
+  .sidebar .open{
+    transform: translateX(0%);
+  }
+  .sidebar .close{
+    transform: translateX(-100%);
   }
   .sidebar h3{
     color: rgb(23, 21, 22);
