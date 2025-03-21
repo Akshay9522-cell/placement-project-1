@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import URL from '../config'
 import axios from 'axios'
+import { FaRupeeSign } from "react-icons/fa";
+
 
 const MyCurrentBalance = () => {
 
@@ -20,7 +22,7 @@ const MyCurrentBalance = () => {
 
     useEffect(()=>{
         getAmount()
-    },[]) 
+    },[id]) 
       
     let depoAmount=0
     let withdrawAmount=0
@@ -35,11 +37,16 @@ const MyCurrentBalance = () => {
              withdrawAmount+=e.Amount
           }
     })
-    total=depoAmount-withdrawAmount
+  
+      total=depoAmount-withdrawAmount
+      
+    
   return (
-    <div>
-      <h1>Current Balance is:{total}</h1>
+    <>
+    <div className='curr'>
+      <h3>Avaliable Balance <h1 style={{color:'green'}}><FaRupeeSign />{total}</h1></h3>
     </div>
+    </>
   )
 }
 

@@ -20,14 +20,16 @@ const MyWithdraw = () => {
          console.log(withdraw)
      }
   return (
-    <div>
-      <h1> My Withdraw</h1>
+    <>
+    <div className='curr'>
+      
 
-      Withdrawl<input type='number' value={withdraw} onChange={(e)=>{setWithdraw(e.target.value)}} />
+    <h1 style={{color:'#97144d'}} >   Withdrawl</h1><input type='number' value={withdraw} onChange={(e)=>{setWithdraw(e.target.value)}} />
   <button onClick={withdrwaAmount}>Withdrawl</button>
 
     <Toaster/>
     </div>
+    </>
   )
 }
 

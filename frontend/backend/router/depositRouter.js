@@ -11,6 +11,10 @@ route.post('/withdraw',depoController.withdraw)
 
 route.get('/totalAmnt',depoController.currentBalance)
 
+route.post('/stat',depoController.stat)
+
+route.post('/mini',depoController.mini)
+
 
 
 module.exports=route

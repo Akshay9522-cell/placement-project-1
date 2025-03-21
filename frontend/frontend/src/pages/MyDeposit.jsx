@@ -6,16 +6,7 @@ import { Toaster,toast } from 'react-hot-toast'
 
 const MyDeposit = () => {
 
-   toast('Deposite Your Amount!',
-      {
-        icon:'✔',
-        style: {
-          borderRadius: '10px',
-          background: 'green',
-          color: '#fff',
-        },
-      }
-    );
+   
 
    const[deposit,setDeposit]=useState({})
   const id=localStorage.getItem("userId")
@@ -26,18 +17,30 @@ const MyDeposit = () => {
         await axios.post(api,{custID:id,Amount:deposit,status:"credit",}).then((res)=>{
            console.log(res.data)
            toast.success('Successfully Deposit!')
+           toast('Deposite Your Amount!',
+            {
+              icon:'✔',
+              style: {
+                borderRadius: '10px',
+                background: 'green',
+                color: '#fff',
+              },
+            }
+          );
         })
          console.log(deposit)
     }
           
   return (
-    <div>
- <h1>MyDeposit</h1>
+    <>
+    <div className='curr'>
 
-  Deposit<input type='number' value={deposit} onChange={(e)=>{setDeposit(e.target.value)}} />
+
+    <h1 style={{color:'#97144d'}}>MyDeposit</h1><input type='number' value={deposit} onChange={(e)=>{setDeposit(e.target.value)}} />
   <button onClick={depositAmount}>Deposit</button>
   <Toaster/>
     </div>
+    </>
   )
 }
 

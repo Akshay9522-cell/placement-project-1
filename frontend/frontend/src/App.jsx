@@ -11,6 +11,8 @@ import MyDeposit from './pages/MyDeposit'
 import Resetpass from './pages/Resetpass'
 import MyWithdraw from './pages/MyWithdraw'
 import MyCurrentBalance from './pages/MyCurrentBalance'
+import MyStatement from './pages/MyStatement'
+import MiniStatment from './pages/MiniStatment'
 
 function App() {
 
@@ -36,6 +38,8 @@ function App() {
        <Route path='dash/mydepo' element={<MyDeposit/>}/>
        <Route path='dash/mywith' element={<MyWithdraw/>}/>
        <Route path='dash/mybalance' element={<MyCurrentBalance/>}/>
+       <Route path='dash/mystat' element={<MyStatement/>}/>
+       <Route path='dash/mymini' element={<MiniStatment/>}/>
        <Route path='dash/resetpass' element={<Resetpass/>}/>
 
         </Route>

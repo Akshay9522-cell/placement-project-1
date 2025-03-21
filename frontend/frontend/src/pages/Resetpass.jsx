@@ -14,7 +14,17 @@ const Resetpass = () => {
             const res = await axios.post(api, { id: id });
             console.log(res.data.password);
             setCurrentPassword(res.data.password);
-            alert('Current password fetched successfully');
+            toast.success('Password Fetched Successfully.', {
+                style: {
+                  border: '1px solid #713200',
+                  padding: '16px',
+                  color: '#713200',
+                },
+                iconTheme: {
+                  primary: '#713200',
+                  secondary: '#FFFAEE',
+                },
+              });
         } catch (error) {
             console.error('Error fetching current password:', error);
             alert('Failed to fetch current password');
@@ -44,7 +54,8 @@ const Resetpass = () => {
     };
 
     return (
-        <div>
+        <>
+        <div className='curr'>
             <h1>Reset your password</h1>
             <button onClick={resetPass}>Fetch Current Password</button>
             
@@ -60,6 +71,7 @@ const Resetpass = () => {
             <button onClick={updatePassword}>Update Password</button>
              <Toaster/>
         </div>
+        </>
     );
 };
 
