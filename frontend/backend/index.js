@@ -2,7 +2,7 @@ const express=require('express')
 
 const app=express()
 const route=require('./router/router')
-const route1=require('./router/depositRouter')
+const depoRoute=require('./router/depositRouter')
 
 require('dotenv').config()
 
@@ -30,7 +30,8 @@ mongoose.connect(process.env.MONGODB).then(()=>{
 
 
 app.use('/bank',route)
-app.use('/bank',route1)
+app.use('/bank',depoRoute)
+
 
 const port=process.env.PORT || 8000
 app.listen(port,()=>{

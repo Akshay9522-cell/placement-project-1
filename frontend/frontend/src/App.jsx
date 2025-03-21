@@ -9,6 +9,8 @@ import Dashboard from './Dashboard'
 import MyAccount from './pages/MyAccount'
 import MyDeposit from './pages/MyDeposit'
 import Resetpass from './pages/Resetpass'
+import MyWithdraw from './pages/MyWithdraw'
+import MyCurrentBalance from './pages/MyCurrentBalance'
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
         <Route path='/dash' element={<Dashboard/>}>
        <Route path='dash/myacc' element={<MyAccount/>}/>
        <Route path='dash/mydepo' element={<MyDeposit/>}/>
+       <Route path='dash/mywith' element={<MyWithdraw/>}/>
+       <Route path='dash/mybalance' element={<MyCurrentBalance/>}/>
        <Route path='dash/resetpass' element={<Resetpass/>}/>
 
         </Route>

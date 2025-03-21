@@ -1,75 +1,42 @@
 import React, { useEffect, useState } from 'react'
-import URL from '../config'
 import axios from 'axios'
+import URL from '../config'
+import { Toaster,toast } from 'react-hot-toast'
+
 
 const MyDeposit = () => {
 
-             const[inp,setInp]=useState({})
-             const[show,setShow]=useState([])
+   toast('Deposite Your Amount!',
+      {
+        icon:'✔',
+        style: {
+          borderRadius: '10px',
+          background: 'green',
+          color: '#fff',
+        },
+      }
+    );
 
-             const handleInp=(e)=>{
-                let name=e.target.name
-                let value=e.target.value
+   const[deposit,setDeposit]=useState({})
+  const id=localStorage.getItem("userId")
+    async function depositAmount(){
+      
+        let api=`${URL}/deposit`
 
-                setInp(values=>({...values,[name]:value}))
-             }
-
-          async   function depositAmnt(){
-
-              let api=`${URL}/deposit`
-
-              await axios.post(api,inp).then((res)=>{
-                 console.log(res.data)
-              })
-              console.log(inp)
-             }
-            
-             const depositData=async()=>{
-                
-                 let api=`${URL}/getDeposit`
-
-                 await axios.get(api).then((res)=>{
-                      console.log(res.data)
-                      setShow(res.data)
-                 })
-             }
-      useEffect(()=>{
-        depositData()
-      },[depositAmnt])
-
-      let res=show.map((e)=>{
-          return(
-            <>
-             <tr>
-              <td>{e.date}</td>
-              <td>{e.medium}</td>
-              <td>{e.credit}</td>
-             </tr>
-            </>
-          )
-      })
-
+        await axios.post(api,{custID:id,Amount:deposit,status:"credit",}).then((res)=>{
+           console.log(res.data)
+           toast.success('Successfully Deposit!')
+        })
+         console.log(deposit)
+    }
+          
   return (
     <div>
-      <h1>my Deposit</h1>
-       
-       <div>
-             Date:<input type='date' name='date' onChange={handleInp} /> <br />
-             Medium:<input type='text' name='medium' onChange={handleInp} /> <br />
-             Credit:<input type='text' name='credit' onChange={handleInp} /> <br />
+ <h1>MyDeposit</h1>
 
-             <button onClick={depositAmnt}>Deposit Your Amount</button>
- 
-       </div>
-
-       <table className='tab' border={1}>
-        <tr>
-          <th>Date</th>
-          <th>Medium</th>
-          <th>Amount</th>
-        </tr>
-        {res}
-       </table>
+  Deposit<input type='number' value={deposit} onChange={(e)=>{setDeposit(e.target.value)}} />
+  <button onClick={depositAmount}>Deposit</button>
+  <Toaster/>
     </div>
   )
 }

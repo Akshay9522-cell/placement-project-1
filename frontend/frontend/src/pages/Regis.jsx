@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import bank from '../imges/bank.jpg'
 import URL from '../config'
 import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify';
+import { Toaster,toast } from 'react-hot-toast'
+
 import { message } from 'antd';
 import Loader from './Loader';
 import { useNavigate } from 'react-router-dom';
@@ -71,6 +72,41 @@ const Regis = () => {
                
                console.log(formData)
                message.success('Registration successfull')
+               toast.custom((t) => (
+                <div
+                  className={`${
+                    t.visible ? 'animate-enter' : 'animate-leave'
+                  } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+                >
+                  <div className="flex-1 w-0 p-4">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 pt-0.5">
+                        <img
+                          className="h-10 w-10 rounded-full"
+                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=6GHAjsWpt9&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                          alt=""
+                        />
+                      </div>
+                      <div className="ml-3 flex-1">
+                        <p className="text-sm font-medium text-gray-900">
+                          <h1> {inp.name}</h1>
+                        </p>
+                        <p className="mt-1 text-sm text-gray-500">
+                          <h4>Welcome to Axis Bank</h4>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex border-l border-gray-200">
+                    <button
+                      onClick={() => toast.dismiss(t.id)}
+                      className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              ))
                nav('/login')
             } catch (error) {
                console.log('error')
@@ -137,7 +173,7 @@ const Regis = () => {
 
 
     </div>
-   <ToastContainer/>
+ <Toaster/>
    
     </>
 

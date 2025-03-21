@@ -1,8 +1,20 @@
 import React from 'react'
+import { Toaster,toast } from 'react-hot-toast'
 
 
 const MyAccount = () => {
-
+      
+  toast('Welcome to Profile!',
+    {
+      icon:'🙏',
+      style: {
+        borderRadius: '10px',
+        background: 'orange',
+        color: '#fff',
+      },
+    }
+  );
+  
   
   return (
     <div>
@@ -15,11 +27,14 @@ const MyAccount = () => {
        <h3>AccNumber:</h3>   <h4>{localStorage.getItem('userAccnumber')}</h4>
        <h3>Address:</h3>   <h4>{localStorage.getItem('userAddress')}</h4>
 
+       
+
       
       
         </div>
           
       </div>
+        <Toaster/>
     </div>
   )
 }

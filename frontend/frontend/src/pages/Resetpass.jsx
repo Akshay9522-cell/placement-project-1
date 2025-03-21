@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import URL from '../config';
 import axios from 'axios';
+import { Toaster,toast } from 'react-hot-toast'
 
 const Resetpass = () => {
     const [newPassword, setNewPassword] = useState('');
@@ -25,7 +26,17 @@ const Resetpass = () => {
         try {
             const response = await axios.post(api, { id: id, password: newPassword });
             console.log(response.data);
-            alert('Password updated successfully');
+            toast.success('Password Updated Successfully.', {
+                style: {
+                  border: '1px solid #713200',
+                  padding: '16px',
+                  color: '#713200',
+                },
+                iconTheme: {
+                  primary: '#713200',
+                  secondary: '#FFFAEE',
+                },
+              });
         } catch (error) {
             console.error('Error updating password:', error);
             alert('Failed to update password');
@@ -36,6 +47,7 @@ const Resetpass = () => {
         <div>
             <h1>Reset your password</h1>
             <button onClick={resetPass}>Fetch Current Password</button>
+            
             <h4>{`Current password: ${currentPassword}`}</h4>
             <label>
                 New Password:
@@ -46,6 +58,7 @@ const Resetpass = () => {
                 />
             </label>
             <button onClick={updatePassword}>Update Password</button>
+             <Toaster/>
         </div>
     );
 };

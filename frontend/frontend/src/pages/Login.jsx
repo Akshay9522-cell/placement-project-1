@@ -7,7 +7,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { Toaster,toast } from 'react-hot-toast'
 import Loader from './Loader';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
@@ -47,8 +47,9 @@ const Login = () => {
           localStorage.setItem("userAddress",res.data.user.address)
           localStorage.setItem("userAccnumber",res.data.user.accountNumber)
           localStorage.setItem('token',res.data.token)
+          toast.success('Successfully Login!')
          nav('/home')
-         toast.success('logged in')
+       
         }else{
           toast.error('Email or Password is incorrect')
         }
@@ -117,7 +118,7 @@ const Login = () => {
         </Modal.Footer>
       </Modal> */}
    
-   <ToastContainer/>
+<Toaster/>
     </>
   )
 }
