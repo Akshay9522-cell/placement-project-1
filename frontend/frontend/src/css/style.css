@@ -215,29 +215,36 @@ button{
   }
   .sidebar{
     height: fit-content;
-    width: 380px;
-    background-color: #97144d;
-  border-radius: 20px;
+    width: 580px;
+    background-color: #4e9da9;
+     border-radius: 20px;
   box-shadow: rgba(290, 75, 35, 0.24) 20px 31px 8px;
   transition: transform 0.3s ease; /* Smooth transition */
+  margin: 100px auto;
+ 
 
-  
 
+  }
+  .back{
+    background: url('../imges//bc.webp');
   }
   .sidebar .open{
     transform: translateX(0%);
   }
-  .sidebar .close{
-    transform: translateX(-100%);
-  }
-  .sidebar h3{
-    color: rgb(23, 21, 22);
-  }
-  .sidebar h4{
-    color: rgb(233, 125, 144);
+    .sidebar .close{
+      transform: translateX(-100%);
+    }
+    .sidebar h3{
+      color: rgb(122, 199, 244);
+    }
+    .sidebar h4{
+      color: rgb(240, 234, 236);
+    font-size: 30px;
   }
   .info{
     padding: 20px;
+    display: flex;
+    flex-direction: column;
   }
 
 .loader {
@@ -426,3 +433,7 @@ th, td {
   outline: none;
   border-radius: 30px;
 }
+/* .img{
+ background: linear-gradient(#0b3f69,#1d6b70,#0b3f69);
+ height: 50vh;
+} */

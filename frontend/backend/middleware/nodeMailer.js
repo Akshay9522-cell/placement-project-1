@@ -1,12 +1,5 @@
 const nodemailer = require("nodemailer");
 
-
-
- 
- 
-
-
-
  const nodeMailer=async(dox,password,accNum)=>{
 
 

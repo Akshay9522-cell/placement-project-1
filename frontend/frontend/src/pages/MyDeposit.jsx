@@ -32,13 +32,15 @@ const MyDeposit = () => {
     }
           
   return (
-    <>
+    < >
+    <div className='img'>
     <div className='curr'>
 
 
     <h1 style={{color:'#97144d'}}>MyDeposit</h1><input type='number' value={deposit} onChange={(e)=>{setDeposit(e.target.value)}} />
   <button onClick={depositAmount}>Deposit</button>
   <Toaster/>
+    </div>
     </div>
     </>
   )

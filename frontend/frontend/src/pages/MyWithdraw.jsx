@@ -6,19 +6,23 @@ import { Toaster,toast } from 'react-hot-toast'
 
 const MyWithdraw = () => {
 
-     const[withdraw,setWithdraw]=useState({})
+     const[withdraw,setWithdraw]=useState({Amount:''})
      const id=localStorage.getItem("userId")
 
 
      async function withdrwaAmount() {
          let api=`${URL}/withdraw`
+try {
+  await axios.post(api,{custID:id,Amount:withdraw,status:"debit",}).then((res)=>{
+    console.log(res.data)
+    toast.success('Successfully Withdrawl!')
+ })
+  console.log(withdraw)
 
-        await axios.post(api,{custID:id,Amount:withdraw,status:"debit",}).then((res)=>{
-           console.log(res.data)
-           toast.success('Successfully Withdrawl!')
-        })
-         console.log(withdraw)
-     }
+} catch (error) {
+  toast.error('insufficient fund!')
+}
+}
   return (
     <>
     <div className='curr'>
