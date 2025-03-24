@@ -83,16 +83,17 @@ const Regis = () => {
                       <div className="flex-shrink-0 pt-0.5">
                         <img
                           className="h-10 w-10 rounded-full"
-                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=6GHAjsWpt9&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                          //src={img}
+                           src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=6GHAjsWpt9&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
                           alt=""
                         />
                       </div>
                       <div className="ml-3 flex-1">
                         <p className="text-sm font-medium text-gray-900">
-                          <h1> {inp.name}</h1>
+                          <h1 style={{color:"#97144d"}}> Welcome To Axis Bank</h1>
                         </p>
                         <p className="mt-1 text-sm text-gray-500">
-                          <h4>Welcome to Axis Bank</h4>
+                          <h4>{inp.name}</h4>
                         </p>
                       </div>
                     </div>
@@ -128,6 +129,9 @@ const Regis = () => {
     <div className='regis'>
       <div className='form'>
       <h1 >Register Your Self</h1>
+ <label for="proof-of-address">Upload Your Profile Picture (passport size):</label>
+  <input type="file" id="proof-of-address" name="poa" required  onChange={handleFile}/><br/><br/>
+
       <label for="full-name">Full Name:</label>
   <input type="text" id="full-name" name="name" required  onChange={handleInp} /><br/><br/>
 

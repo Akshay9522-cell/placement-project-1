@@ -86,10 +86,10 @@ const Login = () => {
            
 
             <label htmlFor="">Password  <br />
-            <input type={show?'text':'password'} value={password} onChange={(e)=>{setPassword(e.target.value)}} />
+            <input type={show?'text':'password'} value={password} onChange={(e)=>{setPassword(e.target.value)}}  />
             <p> <span onClick={handleShow}> Forgot password</span></p>
-            <button onClick={showPassw} className='psw' > {show?<FaEye/>:<FaEyeSlash />
-            }</button>
+            <button onClick={showPassw} className='psw' > {show?<FaEye/>:<FaEyeSlash />}
+            </button>
             </label>
            
 
