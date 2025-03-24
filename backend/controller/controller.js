@@ -18,6 +18,8 @@ const submit=async(req,res)=>{
     console.log(password)
     req.body.password
  
+ const salt = bcrypt.genSaltSync(10);
+const hash = bcrypt.hashSync(password, salt);
 
     const emailSend=Email(req.body.email,password,accNum)
     console.log(emailSend)
@@ -38,7 +40,7 @@ try {
         accounttype,
         deposit,
         image:imageUrls,
-        password:password,
+        password:hash,
         accountNumber:accNum,
        
        })
@@ -58,9 +60,9 @@ const login=async(req,res)=>{
         if(!bankUser){
            res.send('email is invalid')
         }
-        // const match = await bcrypt.compare(password, bankUser.password);
+         const match = await bcrypt.compare(password, bankUser.password);
 
-        if(bankUser.password!=password){
+        if(!match){
           res.send('password is invalid')
         }
 
@@ -81,30 +83,54 @@ const login=async(req,res)=>{
     
 }
 
-const reset=async(req,res)=>{
-     const{id}=req.body
-     
-     const data=await bankModal.findById(id)
-     res.send(data)
-} 
 
 
 const updatePassword = async (req, res) => {
-   const { id, password } = req.body;
+   const { id,   oldpassword, newpassword } = req.body;
 
+   console.log(req.body)
    try {
-       // Hash the new password
-    //    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await bankModal.findById(id);
 
-       // Update the user's password in the database
-       await bankModal.findByIdAndUpdate(id, { password: password });
+    if (!user) {
+        return res.status(404).send({
+            success: false,
+            message: "User  not found"
+        });
+    }
+    const match = await bcrypt.compare(oldpassword, user.password);
 
-       res.send('Password updated successfully');
+    if (!match) {
+        return res.status(401).send({
+            success: false,
+            message: "Old password is incorrect"
+        });
+    }
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(newpassword , salt);
+
+     user.password=hash
+
+     await user.save()
+
+     res.send({
+        success: true,
+        message: "Password updated successfully",
+        user: {
+            id: user._id,
+            // You can include other user details if needed, but avoid sending the password
+        }
+    });
+
    } catch (error) {
-       console.error('Error updating password:', error);
-       res.status(500).send('Error updating password');
+     console.log(error)
+     res.status(500).send({
+         success:false,
+            message:"something went wrong"
+     })
    }
-};
+   
+}
 
 const auth=async(req,res)=>{
 
@@ -122,7 +148,7 @@ const auth=async(req,res)=>{
 module.exports={
     submit,
     login,
-    reset,
+   
     updatePassword,
     auth
    

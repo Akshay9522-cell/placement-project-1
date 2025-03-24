@@ -1,12 +1,19 @@
 const express=require('express')
-const depController=require('../controller/depositController')
+
+const depoController=require('../controller/depositController')
 
 const route=express.Router()
 
-route.post('/deposit',depController.deposit)
-route.get('/getDeposit',depController.getData)
 
+route.post('/deposit',depoController.deposit)
 
+route.post('/withdraw',depoController.withdraw)
+
+route.get('/totalAmnt',depoController.currentBalance)
+
+route.post('/stat',depoController.stat)
+
+route.post('/mini',depoController.mini)
 
 
 
