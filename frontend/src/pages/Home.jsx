@@ -40,7 +40,7 @@ const Home = () => {
        <img src={sl1} alt="" width="100%" height="70%" />
         <Carousel.Caption>
           <h3>Easy to apply for Loan</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <p>Nulla vitae elit libero, a p interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
